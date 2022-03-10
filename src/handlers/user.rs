@@ -114,7 +114,7 @@ pub async fn get_users(user: AuthenticatedUser,repository: UserRepository) -> Ap
 
     // Ok(HttpResponse::Ok().json(user))
     println!("je suis dans get_users de handlers");
-    repository.get_all_users().await;
+   
     Ok(HttpResponse::Ok().header("Access-Control-Allow-Methods","*").header("Access-Control-Allow-Origin","*").body("ok"))
 }
 

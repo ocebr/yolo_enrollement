@@ -98,16 +98,6 @@ impl UserRepository {
     }
 
 
-    #[instrument(skip(self))]
-    pub async fn get_all_users(&self) {
-
-        let all_users = sqlx::query!("select username from users")
-            .fetch_all(&*self.pool)
-            .await;
-        
-        println!("{:?}\n",all_users);
-    }
-
     pub async fn db_suppr_account(&self,id_to_suppr : Uuid){
         println!("dans db suppr account");
          
