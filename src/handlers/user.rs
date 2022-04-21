@@ -38,7 +38,7 @@ pub async fn create_user(user : Form<NewUser>, repository: UserRepository, crypt
         let result : Result<User> = repository.create(user.0, crypto_service.as_ref()).await;
 
         match result {
-            Ok(user) => Ok(HttpResponse::Found().header("Location", "http://127.0.0.1:4201/").json(user)),
+            Ok(user) => Ok(HttpResponse::Found().header("Location", "http://yoloooo.com:30900/front/").json(user)),
             Err(error) => {
                 let pg_error : &PgError = error.root_cause()
                                                .downcast_ref::<PgError>()
@@ -134,5 +134,5 @@ pub async fn suppr_account(user: AuthenticatedUser,repository: UserRepository) -
 pub async fn get_your_name(user:AuthenticatedUser, repository : UserRepository) -> impl Responder{
     let full_name_searched = repository.find_full_name_by_id(user.0).await;
 
-    HttpResponse::Ok().json(full_name_searched.unwrap())
+    HttpResponse::Ok().header("Access-Control-Request-Methods","*").header("Access-Control-Allow-Origin","*").json(full_name_searched.unwrap())
 }
