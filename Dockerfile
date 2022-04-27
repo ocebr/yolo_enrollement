@@ -17,7 +17,7 @@ RUN cargo build --release
 RUN  cp ./target/release/enrolement /bin/enrolement
 
 
-FROM ubuntu
+FROM gcr.io/distroless/cc
 
 COPY --from=builder --chown=1:1 ${HOME}/bin/enrolement  /app/main
 COPY --from=builder --chown=1:1 /home/.env app/.env

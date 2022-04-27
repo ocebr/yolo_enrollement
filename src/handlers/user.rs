@@ -38,7 +38,7 @@ pub async fn create_user(user : Form<NewUser>, repository: UserRepository, crypt
         let result : Result<User> = repository.create(user.0, crypto_service.as_ref()).await;
 
         match result {
-            Ok(user) => Ok(HttpResponse::Found().header("Location", "http://yoloooo.com:30900/front/").json(user)),
+            Ok(user) => Ok(HttpResponse::Found().header("Location", "http://yoloooo.com/front/").json(user)),
             Err(error) => {
                 let pg_error : &PgError = error.root_cause()
                                                .downcast_ref::<PgError>()
